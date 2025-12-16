@@ -6,6 +6,10 @@
     --border-color: #e0e0e0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Times New Roman', Times, serif;
     background-color: var(--bg-color);
@@ -19,7 +23,9 @@ body {
 
 /* Contenedor Principal */
 .container {
-    max-width: 700px; margin: 0 auto;
+    max-width: 900px; 
+    width: 90%;
+    margin: 0 auto;
     border: 1px solid var(--border-color); padding: 50px;
     background-color: var(--paper-color);
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
@@ -37,11 +43,11 @@ body {
     max-width: 300px;
 }
 
-h1 { font-weight: normal; text-transform: uppercase; letter-spacing: 3px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; }
+h1 { font-weight: normal; text-transform: uppercase; letter-spacing: 3px; padding-bottom: 20px; }
 .subtitle { font-style: italic; color: #666; margin-bottom: 20px; }
 
 /* Menú */
-.church-nav { margin-bottom: 40px; border-bottom: 1px double var(--border-color); padding-bottom: 10px; }
+.church-nav { margin-top: -20px ; margin-bottom: 40px; border-bottom: 1px double var(--border-color); padding-bottom: 10px; }
 .church-nav ul { list-style: none; padding: 0; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
 .church-nav a { text-decoration: none; color: var(--accent-color); text-transform: uppercase; padding: 5px 10px; transition: 0.5s; }
 .church-nav a:hover { background-color: rgba(0,0,0,0.05); }
@@ -58,7 +64,45 @@ button {
 }
 
 /* Resultados */
-.revelations-area { margin-top: 40px; text-align: left; border-top: 1px double var(--border-color); padding-top: 20px; }
+.revelations-area {
+    margin-top: 20px;
+    text-align: left;
+    /* CAMBIOS VISUALES: */
+    background-color: #111; /* Gris muy oscuro (casi negro) */
+    border: 1px solid #333; /* Borde gris sutil */
+    min-height: 250px;      /* ALTURA MÍNIMA: Esto hace que el cuadro exista aunque esté vacío */
+    padding: 20px;
+    
+    /* Estilos de terminal */
+    height: 300px;           /* Altura fija máxima */
+    overflow-y: auto;        /* Scroll si hay mucho texto */
+    font-family: 'Courier New', Courier, monospace;
+    color: #ccc;
+    flex-direction: column-reverse; 
+    
+    /* Opcional: Una sombra interna para que parezca una pantalla vieja */
+    box-shadow: inset 0 0 20px #000;
+
+    /* Por default esta escondido */
+    display: none;
+}
+
+/* MENSAJES DEL JUEGO */
+.game-msg {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #333;
+    animation: fadeIn 0.3s forwards;
+}
+
+.game-msg.player { color: #888; font-style: italic; } /* Lo que tú escribes */
+.game-msg.system { color: #fff; font-weight: bold; }  /* La narración */
+.game-msg.reward { color: #d00; text-shadow: 0 0 5px red; } /* Items/Links */
+
+/* Scrollbar personalizada (opcional, para que se vea dark) */
+.revelations-area::-webkit-scrollbar { width: 8px; }
+.revelations-area::-webkit-scrollbar-thumb { background: #333; }
+
 .verse { 
     margin-bottom: 20px; padding: 15px; border-left: 3px solid var(--accent-color); 
     background: rgba(0,0,0,0.02); font-size: 1.1rem; opacity: 0; animation: fadeIn 0.5s forwards; 
@@ -69,10 +113,89 @@ button {
 /* --- MODO RITUAL --- */
 body.ritual-mode {
     --bg-color: #0a0a0a; --paper-color: #000; --text-color: #aaa; --accent-color: #900; --border-color: #333;
+    display: block; 
+}
+/* RAparece Consoloa en RITUAL */
+body.ritual-mode .revelations-area {
+    display: flex; 
+    flex-direction: column-reverse; /* Esto hace que los mensajes nuevos salgan abajo */
 }
 body.ritual-mode .container { border-color: #500; }
 body.ritual-mode h1 { color: #900; text-shadow: 2px 2px 0px #000; }
 body.ritual-mode input { border-color: #500; color: #900; }
+
+/* --- BOTÓN DE BÚSQUEDA EN MODO RITUAL --- */
+
+/* Estado normal en el ritual */
+body.ritual-mode button {
+    background-color: transparent; /* Fondo transparente para que se vea elegante */
+    color: #666;                   /* Color de texto gris apagado (como metal viejo) */
+    border: 1px solid #333;        /* Borde oscuro sutil */
+    
+    font-family: 'Times New Roman', Times, serif; /* Aseguramos la fuente */
+    letter-spacing: 2px;           /* Espaciado cinematográfico */
+    font-weight: bold;
+    
+    transition: all 0.4s ease;     /* Transición suave para el efecto hover */
+}
+
+/* Estado al pasar el mouse (HOVER) */
+body.ritual-mode button:hover {
+    color: #ff0000;                /* Texto rojo brillante */
+    border-color: #900;            /* El borde se vuelve rojo sangre */
+    background-color: #0a0a0a;     /* Un fondo negro muy sutil */
+    
+    /* EFECTO DE BRILLO (Glow) ROJO */
+    box-shadow: 0 0 15px rgba(150, 0, 0, 0.6); /* Resplandor exterior */
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.8); /* Resplandor en el texto */
+    
+    cursor: pointer;
+}
+
+/* --- BUSCADOR CAJA --- */
+
+/* 1. ALINEACIÓN PERFECTA */
+/* Convertimos la caja en un contenedor flexible */
+.search-box {
+    display: flex;           /* Alinea los hijos en fila automáticamente */
+    justify-content: center; /* Los centra horizontalmente */
+    align-items: center;     /* Los centra verticalmente */
+    gap: 0;                  /* Espacio entre ellos (pon 10px si los quieres separados) */
+    margin: 40px auto;       /* Mantiene tu margen original y centra el bloque */
+    max-width: 700px;        /* Evita que se estire demasiado en pantallas grandes */
+}
+
+/* Forzamos que ambos midan exactamente lo mismo */
+input[type="text"], button {
+    height: 50px !important;    /* Altura fija idéntica para ambos */
+    box-sizing: border-box;     /* CLAVE: Incluye el borde/padding en la altura total */
+    font-size: 1rem;            /* Unificamos tamaño de letra para evitar desajustes */
+    border-radius: 0;           /* Opcional: Esquinas cuadradas se ven más "brutales" */
+}
+
+/* Ajuste específico para el input para que no se encoja */
+input[type="text"] {
+    width: 60%;                 /* Ocupa el 60% del espacio disponible */
+}
+
+/* 2. FOCUS INMERSIVO */
+/* Cuando haces clic en el input dentro del modo ritual */
+body.ritual-mode input:focus {
+    outline: none;              /* Elimina el recuadro azul nativo de Chrome/Safari */
+    border-color: #ff0000;      /* Borde rojo intenso */
+    background-color: #050000;  /* Fondo negro casi total */
+    
+    /* Resplandor rojo difuso */
+    box-shadow: 
+        inset 0 0 10px rgba(100, 0, 0, 0.5), /* Sombra interna */
+        0 0 15px rgba(200, 0, 0, 0.4);       /* Brillo externo */
+}
+
+/* Opcional: Lo mismo para el botón si se selecciona con Tab */
+body.ritual-mode button:focus {
+    outline: none;
+    border-color: #900;
+}
 
 /* --- NIVELES DE CORRUPCIÓN VISUAL --- */
 
@@ -142,43 +265,6 @@ body.level-6 { animation: shake 0.1s infinite; }
     50% { opacity: 0; } 
 }
 
-/* --- LOG DE SISTEMA (Esquina Inferior Izquierda) --- */
-#systemLog {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    text-align: left;
-    z-index: 100;
-    pointer-events: none; /* Permite hacer clic a través del texto */
-}
-
-.system-msg {
-    color: rgba(255, 255, 255, 0.7); /* Blanco con un poco de transparencia */
-    font-family: 'Courier New', Courier, monospace; /* Fuente tipo hacker */
-    font-size: 0.8rem;
-    margin-top: 5px;
-    text-shadow: 1px 1px 2px black; /* Sombra para que se lea sobre cualquier fondo */
-}
-
-/* Ocultar SOLO en celulares */
-@media (max-width: 600px) {
-    #systemLog {
-        display: none;
-    }
-}
-
-/* Animación para que el texto parpadee al aparecer */
-@keyframes flashMsg {
-    0% { opacity: 0; transform: translateX(-10px); }
-    50% { opacity: 1; transform: translateX(0); }
-    100% { opacity: 1; }
-}
-
-/* Asegurar que el log esté SIEMPRE encima de todo */
-#systemLog {
-    z-index: 9999 !important; /* El número más alto posible */
-}
-
 /* --- LÓGICA ANTI-FLASH (Intercambio Instantáneo) --- */
 
 /* Si el cuerpo tiene la clase ritual-mode, OCULTA inmediatamente lo normal */
@@ -218,6 +304,37 @@ body.ritual-mode .clean-view {
 
 body.ritual-mode .cult-view {
     display: inline-block !important; /* Aparece el culto */
+}
+
+/* Quitamos márgenes extra al contenedor del título */
+.logo-container {
+    margin: 0;
+    padding: 0;
+    text-align: center; /* Asegura el centrado */
+    line-height: 0; /* Elimina espacios fantasma debajo de la imagen */
+}
+
+.main-logo {
+    /* RESPONSIVE: */
+    max-width: 100%; /* Nunca se saldrá de la pantalla en celular */
+    height: auto;    /* Mantiene la proporción original */
+    
+    /* TAMAÑO EN PC: Ajusta este número según tu gusto */
+    width: 200px;    
+    
+    /* CENTRADO: */
+    display: block;
+    margin: 0 auto;
+    
+    /* Opcional: Si quieres que el logo tenga un brillo sutil */
+    filter: drop-shadow(0 0 10px rgba(200, 0, 0, 0.3));
+}
+
+/* TAMAÑO EN CELULAR */
+@media (max-width: 600px) {
+    .main-logo {
+        width: 120px; /* Un poco más chico en móviles */
+    }
 }
 
 /* --- FOOTER GENERAL --- */
@@ -268,11 +385,13 @@ footer {
 /* Solo se verá cuando se active el modo ritual gracias a tu código anterior */
 
 .band-footer {
+    width: 100%;
     background-color: #000;
     color: #fff;
-    padding: 50px 20px;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
     text-align: center;
-    border-top: 1px solid #333;
     letter-spacing: 2px;
 }
 
@@ -300,9 +419,13 @@ footer {
 
 .band-name-footer {
     font-family: 'Times New Roman', serif; /* Serif clásico gótico */
-    font-size: 2rem;
+    /* CLAMP: (Mínimo, Ideal, Máximo) */
+    /* Esto hace que el texto se encoja suavemente en celulares */
+    font-size: clamp(1rem, 5vw, 2.5rem);
     margin-bottom: 30px;
-    letter-spacing: 5px;
+    letter-spacing: 0.3rem;
+    /* Asegura que nunca se rompa en dos líneas 
+    white-space: nowrap;*/
 }
 
 .band-nav a {
@@ -323,4 +446,71 @@ footer {
     margin-top: 40px;
     font-size: 0.7rem;
     color: #444;
+}
+
+#eye-container {
+    width: 100%;       /* Ocupa todo el ancho disponible */
+    margin: 0 0 0 0;  
+    display: flex;     /* Para centrar el canvas horizontalmente */
+    justify-content: center;
+    position: relative; /* Para que se comporte bien en el flujo */
+    z-index: 1;
+}
+
+/* --- TRANSFORMACIÓN DEL MENÚ OCULTO --- */
+
+/* 1. Estilo base de los links "Secta" */
+.church-nav ul li a.cult-view {
+    font-family: 'Times New Roman', Times, serif; /* Fuente Serif elegante */
+    font-weight: 900;       /* Extra grueso */
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 0.25em; /* ESPACIADO DE CINE (Clave del look) */
+    
+    /* Color inicial: Gris medio (apagado/muerto) */
+    /* Usamos !important por si acaso quedó algún estilo inline rebelde */
+    color: #ffffff !important; 
+    
+    font-size: 0.9rem;      /* Tamaño ajustado para que quepa bien */
+    transition: all 0.4s ease; /* Transición suave para el brillo */
+    
+    /* Ajuste de posición si es necesario para alinearlo con el texto normal */
+    vertical-align: middle;
+}
+
+/* 2. El Efecto GLOW (Brillo) al pasar el mouse */
+.church-nav ul li a.cult-view:hover {
+    color: #ffffff !important; /* Blanco puro */
+    
+    /* Tres capas de sombra blanca para crear el neón difuso */
+    text-shadow: 
+        0 0 5px rgba(255, 255, 255, 0.8),
+        0 0 15px rgba(255, 255, 255, 0.5),
+        0 0 30px rgba(255, 255, 255, 0.2);
+        
+    transform: scale(1.05); /* Pequeño zoom */
+}
+
+/* 3. Asegurar que los items de la lista tengan espacio cuando están en modo culto */
+body.ritual-mode .church-nav ul {
+    gap: 30px; /* Más espacio entre palabras en modo ritual */
+    align-items: center;
+}
+
+/* Mensajes de Secretos Globales */
+.game-msg.revelation {
+    color: #ffd700; /* Dorado */
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    border-left: 3px solid #ffd700;
+    padding-left: 10px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.game-msg.revelation a {
+    color: #fff;
+    text-decoration: underline;
+    cursor: pointer;
 }

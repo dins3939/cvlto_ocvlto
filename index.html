@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>La verdad Oculta | Bienvenidos</title>
     <link rel="stylesheet" href="style.css">
@@ -24,34 +25,36 @@
 
     <div class="container" id="mainContainer">
     
-        <h1 class="clean-view" id="mainTitle">La verdad Oculta</h1>
-        <h1 class="cult-view" style="color: #900;">EL CULTO DEL OCULTO</h1>
-    
-        <div class="subtitle">
-            <span class="clean-view">"Dios ama al dador alegre."</span>
-            <span class="cult-view">Realidad Comprometida.</span>
-        </div>
+        <h1 class="clean-view" id="mainTitle">
+    <img src="./assets/oculto-iglesia.png" alt="El Culto del Oculto" style="max-width: 100%; height: auto; width: 400px; 
+    display: block; margin: -50px 0 0 0;">
+    </h1>
+        <h1 class="cult-view logo-container">
+    <img src="./assets/culto-letras.png" alt="El Culto del Oculto" class="main-logo">
+</h1>
+
+        <div id="eye-container" class="cult-view"></div>
     
         <nav class="church-nav">
             <ul>
                 <li>
-                    <a href="index.html" class="clean-view">🏛️ Inicio</a>
-                    <a href="index.html" class="cult-view" style="color: #900;">🩸 INICIO</a>
+                    <a href="index.html" class="clean-view">Inicio</a>
+                    <a href="index.html" class="cult-view">INICIO</a>
                 </li>
                 
                 <li>
-                    <a href="https://instagram.com/IGLESIA_FAKE" target="_blank" class="clean-view">👥 Congregación</a>
-                    <a href="https://instagram.com/TU_BANDA" target="_blank" class="cult-view" style="color: #900;">🩸 SECTA</a>
+                    <a href="https://www.instagram.com/cvlto_ocvlto/" target="_blank" class="clean-view">Congregación</a>
+                    <a href="https://www.instagram.com/cvlto_ocvlto/" target="_blank" class="cult-view">EL CULTO</a>
                 </li>
     
                 <li>
-                    <a href="#" target="_blank" class="clean-view">🕊️ Cantos</a>
-                    <a href="https://spotify.com/TU_BANDA" target="_blank" class="cult-view" style="color: #900;">💀 AUDIO</a>
+                    <a href="https://linktr.ee/cvlto.ocvlto" target="_blank" class="clean-view">Cantos</a>
+                    <a href="https://linktr.ee/cvlto.ocvlto" target="_blank" class="cult-view">MÚSICA</a>
                 </li>
     
                 <li>
-                    <a href="merch.html" class="clean-view">💰 Diezmo</a>
-                    <a href="merch.html" class="cult-view" style="color: #900;">💀 OFRENDAS</a>
+                    <a href="merch.html" class="clean-view">Diezmo</a>
+                    <a href="merch.html" class="cult-view">OFRENDAS</a>
                 </li>
             </ul>
         </nav>
@@ -70,8 +73,6 @@
 
     <audio id="ambienceAudio" src="https://www.soundjay.com/mechanical/sounds/static-noise-01.mp3" loop></audio>
 
-    <div id="systemLog"></div>
-
     <footer>
     
         <div class="clean-view church-footer">
@@ -84,19 +85,28 @@
             </div>
             
             <div class="social-icons-clean">
-                <a href="#"><i class="fa-brands fa-facebook-f"></i></a> <a href="#"><i class="fa-brands fa-twitter"></i></a>    <a href="#"><i class="fa-brands fa-instagram"></i></a>  <a href="#"><i class="fa-brands fa-youtube"></i></a>    <span style="margin-left: 10px; font-size: 0.9rem;">All Church Social Pages</span>
+                <a href="https://cultodeloculto.bandcamp.com/"><i class="fa-brands fa-bandcamp"></i></a>
+                <a href="https://www.facebook.com/cvlto.ocvlto"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/cvlto_ocvlto/"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://youtube.com/@elcultodeloculto?si=d_TCWJgI8mI2E0Wm"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://open.spotify.com/intl-es/artist/7cHkTPe5n5YQPT2cGIwQ66?si=D14m6ceKQoaBnzwBYAkY7g"><i class="fa-brands fa-spotify"></i></a>   
+                <span style="margin-left: 10px; font-size: 0.9rem;">All Church Social Pages</span>
             </div>
     
             <div class="legal-text">
                 <p>Accessibility</p>
                 <p>Terms of Use (Updated 2025-01-01) Privacy Notice (Updated 2025-01-01)</p>
-                <p>&copy; 2025 La verdad Oculta, Inc. All rights reserved.</p>
+                <p>&copy; 2025 el culto del Oculto, Inc. All rights reserved.</p>
             </div>
         </div>
     
         <div class="cult-view band-footer">
 
-            <h2 class="band-name-footer">e l &nbsp; c v l t o &nbsp; d e l &nbsp; O c v l t o</h2>
+            <h2 class="band-name-footer">
+              <a href="#">
+                <img src="./assets/culto-white.png" alt="El Oculto" class="main-logo" style="width: 100px; max-width: 80%;">
+              </a>
+            </h2>
             
             <div class="cult-social-header">
                 s i g u e n o s &nbsp; e n
@@ -111,10 +121,9 @@
             </div>
     
             <div class="band-nav">
-                <a href="#">NEWS</a>
+                <a href="https://linktr.ee/cvlto.ocvlto">LINKS</a>
                 <a href="#">SHOWS</a>
-                <a href="#">STORE</a>
-                <a href="#">MERCH</a>
+                <a href="merch.html">MERCH</a>
                 <a href="#">BIO</a>
             </div>
     
@@ -126,6 +135,10 @@
     
     </footer>
 
+    <script src="game.js"></script>
+    
     <script src="script.js"></script>
+    
+    <script src="eye.js"></script>
 </body>
 </html>
