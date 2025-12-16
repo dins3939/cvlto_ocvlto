@@ -1,0 +1,326 @@
+:root {
+    --bg-color: #fcfbf4;
+    --paper-color: #ffffff;
+    --text-color: #333333;
+    --accent-color: #2c5d85;
+    --border-color: #e0e0e0;
+}
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0; padding: 20px;
+    text-align: center;
+    transition: all 0.5s ease;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Contenedor Principal */
+.container {
+    max-width: 700px; margin: 0 auto;
+    border: 1px solid var(--border-color); padding: 50px;
+    background-color: var(--paper-color);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: all 0.5s ease;
+    position: relative; z-index: 10;
+}
+
+/* --- ELEMENTOS DE GLITCH (Gifs) --- */
+.glitch-overlay-img {
+    position: fixed;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.8;
+    mix-blend-mode: exclusion;
+    max-width: 300px;
+}
+
+h1 { font-weight: normal; text-transform: uppercase; letter-spacing: 3px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; }
+.subtitle { font-style: italic; color: #666; margin-bottom: 20px; }
+
+/* Menú */
+.church-nav { margin-bottom: 40px; border-bottom: 1px double var(--border-color); padding-bottom: 10px; }
+.church-nav ul { list-style: none; padding: 0; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+.church-nav a { text-decoration: none; color: var(--accent-color); text-transform: uppercase; padding: 5px 10px; transition: 0.5s; }
+.church-nav a:hover { background-color: rgba(0,0,0,0.05); }
+
+/* Input */
+.search-box { margin: 40px 0; }
+input[type="text"] { 
+    padding: 12px; width: 70%; border: 1px solid #ccc; font-family: 'Times New Roman', Times, serif; 
+    font-size: 1.1rem; text-align: center; background: transparent; color: inherit;
+}
+button { 
+    padding: 12px 25px; background-color: #f4f4f4; border: 1px solid #ccc; cursor: pointer; 
+    text-transform: uppercase; font-family: 'Times New Roman', Times, serif;
+}
+
+/* Resultados */
+.revelations-area { margin-top: 40px; text-align: left; border-top: 1px double var(--border-color); padding-top: 20px; }
+.verse { 
+    margin-bottom: 20px; padding: 15px; border-left: 3px solid var(--accent-color); 
+    background: rgba(0,0,0,0.02); font-size: 1.1rem; opacity: 0; animation: fadeIn 0.5s forwards; 
+}
+@keyframes fadeIn { to { opacity: 1; } }
+.verse a { color: var(--accent-color); font-weight: bold; }
+
+/* --- MODO RITUAL --- */
+body.ritual-mode {
+    --bg-color: #0a0a0a; --paper-color: #000; --text-color: #aaa; --accent-color: #900; --border-color: #333;
+}
+body.ritual-mode .container { border-color: #500; }
+body.ritual-mode h1 { color: #900; text-shadow: 2px 2px 0px #000; }
+body.ritual-mode input { border-color: #500; color: #900; }
+
+/* --- NIVELES DE CORRUPCIÓN VISUAL --- */
+
+/* --- ELEMENTOS FLOTANTES --- */
+/* Glitch Temporal (Se va rápido) */
+.glitch-temp {
+    position: fixed; pointer-events: none; z-index: 50;
+    opacity: 0.8; mix-blend-mode: exclusion;
+}
+
+/* Elemento Persistente (Se queda y ensucia la pantalla) */
+.persistent-element {
+    position: fixed; pointer-events: none; z-index: 5;
+    opacity: 0.6; filter: grayscale(100%);
+    transition: opacity 2s;
+}
+
+/* --- LOS 7 NIVELES DE PROFANACIÓN --- */
+
+/* Nivel 1: Oscuridad */
+body.level-1 { background-color: #000; }
+body.level-1 .container { box-shadow: 0 0 20px #300; border-color: #333; }
+
+/* Nivel 2: Inclinación y Sepia */
+body.level-2 .container { transform: rotate(1deg); filter: sepia(0.8) contrast(1.2); }
+
+/* Nivel 3: Inversión de Colores */
+body.level-3 { filter: invert(0.9) hue-rotate(180deg); }
+
+/* Nivel 4: Desenfoque + Borde de Alerta */
+body.level-4 .container { filter: blur(0.5px) contrast(1.5); border: 2px dashed red; }
+
+/* Nivel 5: Fondo Rojo Sangre */
+body.level-5 { background-color: #300; }
+body.level-5 h1 { transform: scaleY(1.5); letter-spacing: 5px; }
+
+/* Nivel 6: Temblor Violento (Pesadilla) */
+body.level-6 { animation: shake 0.1s infinite; }
+@keyframes shake { 
+    0% { transform: translate(1px, 1px); } 
+    100% { transform: translate(-1px, -1px); } 
+}
+
+/* --- PANTALLA DE ERROR FINAL (CRASH) --- */
+#crashOverlay {
+    display: none;               /* Esto es vital: lo mantiene oculto al inicio */
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh;
+    background: #000;            /* Fondo negro */
+    z-index: 9999; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+    color: red;                  /* Texto rojo */
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.fatal-error { 
+    font-size: 3rem; 
+    animation: blink 0.1s infinite; 
+}
+
+@keyframes blink { 
+    50% { opacity: 0; } 
+}
+
+/* --- LOG DE SISTEMA (Esquina Inferior Izquierda) --- */
+#systemLog {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    text-align: left;
+    z-index: 100;
+    pointer-events: none; /* Permite hacer clic a través del texto */
+}
+
+.system-msg {
+    color: rgba(255, 255, 255, 0.7); /* Blanco con un poco de transparencia */
+    font-family: 'Courier New', Courier, monospace; /* Fuente tipo hacker */
+    font-size: 0.8rem;
+    margin-top: 5px;
+    text-shadow: 1px 1px 2px black; /* Sombra para que se lea sobre cualquier fondo */
+}
+
+/* Ocultar SOLO en celulares */
+@media (max-width: 600px) {
+    #systemLog {
+        display: none;
+    }
+}
+
+/* Animación para que el texto parpadee al aparecer */
+@keyframes flashMsg {
+    0% { opacity: 0; transform: translateX(-10px); }
+    50% { opacity: 1; transform: translateX(0); }
+    100% { opacity: 1; }
+}
+
+/* Asegurar que el log esté SIEMPRE encima de todo */
+#systemLog {
+    z-index: 9999 !important; /* El número más alto posible */
+}
+
+/* --- LÓGICA ANTI-FLASH (Intercambio Instantáneo) --- */
+
+/* Si el cuerpo tiene la clase ritual-mode, OCULTA inmediatamente lo normal */
+body.ritual-mode #normalContent {
+    display: none !important;
+}
+
+/* Si el cuerpo tiene la clase ritual-mode, MUESTRA inmediatamente lo oculto */
+body.ritual-mode #cultContent {
+    display: block !important;
+}
+
+/* Ajuste para que el menú cambie de color rápido si usas clases ahí también */
+body.ritual-mode #nav-merch {
+    color: #900;
+}
+
+/* --- SISTEMA DE DOBLE IDENTIDAD (CORREGIDO) --- */
+
+/* 1. ESTADO NORMAL (IGLESIA) */
+/* Ocultar elementos del culto por defecto */
+.cult-view {
+    display: none !important;
+}
+
+/* Mostrar elementos limpios */
+.clean-view {
+    display: inline-block !important; /* Usamos inline-block para respetar el diseño del menú */
+}
+
+/* 2. ESTADO RITUAL (OCULTO) */
+/* Cuando el body tiene la clase ritual-mode, INVERTIMOS TODO */
+
+body.ritual-mode .clean-view {
+    display: none !important; /* Se oculta la iglesia */
+}
+
+body.ritual-mode .cult-view {
+    display: inline-block !important; /* Aparece el culto */
+}
+
+/* --- FOOTER GENERAL --- */
+footer {
+    width: 100%;
+    margin-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* --- ESTILOS IGLESIA (Clean View) --- */
+.church-footer {
+    background-color: #f0f0f0; /* Gris muy claro */
+    color: #555;
+    padding: 40px 20px;
+    text-align: center;
+    font-family: sans-serif; /* Fuente aburrida */
+    border-top: 1px solid #ccc;
+}
+
+.footer-links a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 15px;
+    font-size: 0.9rem;
+}
+
+.social-icons-clean {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+.social-icons-clean a {
+    color: #3b5998; /* Azul corporativo genérico */
+    font-size: 1.5rem;
+}
+
+.legal-text p {
+    font-size: 0.75rem;
+    color: #777;
+    margin: 5px 0;
+}
+
+
+/* --- ESTILOS CULTO (Cult View) --- */
+/* Solo se verá cuando se active el modo ritual gracias a tu código anterior */
+
+.band-footer {
+    background-color: #000;
+    color: #fff;
+    padding: 50px 20px;
+    text-align: center;
+    border-top: 1px solid #333;
+    letter-spacing: 2px;
+}
+
+.cult-social-header {
+    font-family: 'Courier New', monospace; /* Tipo máquina de escribir */
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+    letter-spacing: 5px; /* Texto espaciado como "f o l L o w" */
+    text-transform: lowercase;
+}
+
+.social-icons-cult {
+    margin-bottom: 40px;
+}
+.social-icons-cult a {
+    color: #fff;
+    font-size: 1.5rem;
+    margin: 0 15px;
+    transition: color 0.3s;
+}
+.social-icons-cult a:hover {
+    color: #900; /* Rojo sangre al pasar el mouse */
+}
+
+.band-name-footer {
+    font-family: 'Times New Roman', serif; /* Serif clásico gótico */
+    font-size: 2rem;
+    margin-bottom: 30px;
+    letter-spacing: 5px;
+}
+
+.band-nav a {
+    color: #aaa;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+    transition: color 0.3s;
+}
+.band-nav a:hover {
+    color: #fff;
+    text-shadow: 0 0 5px #fff;
+}
+
+.cult-legal {
+    margin-top: 40px;
+    font-size: 0.7rem;
+    color: #444;
+}

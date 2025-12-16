@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Ofrendas | Sacrificios</title> <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script>
+        // Este script se ejecuta ANTES de que la página se dibuje
+        if (localStorage.getItem('cult_awakened') === 'true') {
+            document.body.classList.add('ritual-mode');
+        }
+    </script>
+
+    <div id="crashOverlay">
+        <div class="fatal-error">SYSTEM_FAILURE</div>
+        <h1 style="font-size: 6rem; margin: 20px 0;" id="countdown">3</h1>
+        <p>PURGING SOUL...</p>
+    </div>
+
+    <div class="container" id="mainContainer">
+    
+        <h1 class="clean-view" id="mainTitle">Sacrificios para la Obra</h1>
+        <h1 class="cult-view" style="color: #900;">EL CULTO DEL OCULTO</h1>
+    
+        <div class="subtitle">
+            <span class="clean-view">"Dios ama al dador alegre."</span>
+            <span class="cult-view">Realidad Comprometida.</span>
+        </div>
+    
+        <nav class="church-nav">
+            <ul>
+                <li>
+                    <a href="index.html" class="clean-view">🏛️ Inicio</a>
+                    <a href="index.html" class="cult-view" style="color: #900;">🩸 INICIO</a>
+                </li>
+                
+                <li>
+                    <a href="https://instagram.com/IGLESIA_FAKE" target="_blank" class="clean-view">👥 Congregación</a>
+                    <a href="https://instagram.com/TU_BANDA" target="_blank" class="cult-view" style="color: #900;">🩸 SECTA</a>
+                </li>
+    
+                <li>
+                    <a href="#" target="_blank" class="clean-view">🕊️ Cantos</a>
+                    <a href="https://spotify.com/TU_BANDA" target="_blank" class="cult-view" style="color: #900;">💀 AUDIO</a>
+                </li>
+    
+                <li>
+                    <a href="merch.html" class="clean-view">💰 Diezmo</a>
+                    <a href="merch.html" class="cult-view" style="color: #900;">💀 OFRENDAS</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div id="normalContent">
+            <p>Ayúdanos a mantener el templo. Compra nuestros artículos sagrados.</p>
+            <div style="display: flex; gap: 20px; justify-content: center; margin-top: 30px; flex-wrap: wrap;">
+                <div style="border:1px solid #ccc; padding:20px; width: 200px;">
+                    <h3>🕯️ Veladora</h3>
+                    <p>Luz para tu hogar.</p>
+                    <button>Donar $50</button>
+                </div>
+                <div style="border:1px solid #ccc; padding:20px; width: 200px;">
+                    <h3>📿 Rosario</h3>
+                    <p>Madera bendita.</p>
+                    <button>Donar $120</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="cultContent" style="display: none; border-top: 2px solid #900; margin-top: 30px; padding-top: 20px;">
+            <h2 style="color: #900;">MERCANCÍA MALDITA</h2>
+            <p>Viste la piel de la bestia.</p>
+            
+            <div style="display: flex; gap: 20px; justify-content: center; margin-top: 30px; flex-wrap: wrap;">
+                <div style="border:1px solid #900; background: #111; padding:20px; width: 200px;">
+                    <h3 style="color: #f00;">T-Shirt Ritual</h3>
+                    <p style="color: #888;">Algodón Negro.</p>
+                    <a href="#" style="color: #f00; text-decoration: underline;">COMPRAR</a>
+                </div>
+                <div style="border:1px solid #900; background: #111; padding:20px; width: 200px;">
+                    <h3 style="color: #f00;">Cassette Demo</h3>
+                    <p style="color: #888;">Edición Limitada.</p>
+                    <a href="#" style="color: #f00; text-decoration: underline;">COMPRAR</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="revelations-area" id="revelationsArea"></div>
+    </div>
+
+    <audio id="ambienceAudio" src="https://www.soundjay.com/mechanical/sounds/static-noise-01.mp3" loop></audio>
+    <div id="systemLog"></div>
+
+    <footer>
+    
+        <div class="clean-view church-footer">
+            <div class="footer-links">
+                <a href="#">Site Map</a>
+                <a href="#">Feedback</a>
+                <a href="#">Employment</a>
+                <a href="#">Help</a>
+                <a href="#">Area Sites</a>
+            </div>
+            
+            <div class="social-icons-clean">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a> <a href="#"><i class="fa-brands fa-twitter"></i></a>    <a href="#"><i class="fa-brands fa-instagram"></i></a>  <a href="#"><i class="fa-brands fa-youtube"></i></a>    <span style="margin-left: 10px; font-size: 0.9rem;">All Church Social Pages</span>
+            </div>
+    
+            <div class="legal-text">
+                <p>Accessibility</p>
+                <p>Terms of Use (Updated 2025-01-01) Privacy Notice (Updated 2025-01-01)</p>
+                <p>&copy; 2025 La verdad Oculta, Inc. All rights reserved.</p>
+            </div>
+        </div>
+    
+        <div class="cult-view band-footer">
+
+            <h2 class="band-name-footer">e l &nbsp; c v l t o &nbsp; d e l &nbsp; O c v l t o</h2>
+            
+            <div class="cult-social-header">
+                s i g u e n o s &nbsp; e n
+            </div>
+    
+            <div class="social-icons-cult">
+                <a href="https://cultodeloculto.bandcamp.com/"><i class="fa-brands fa-bandcamp"></i></a>
+                <a href="https://www.facebook.com/cvlto.ocvlto"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/cvlto_ocvlto/"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://youtube.com/@elcultodeloculto?si=d_TCWJgI8mI2E0Wm"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://open.spotify.com/intl-es/artist/7cHkTPe5n5YQPT2cGIwQ66?si=D14m6ceKQoaBnzwBYAkY7g"><i class="fa-brands fa-spotify"></i></a>
+            </div>
+    
+            <div class="band-nav">
+                <a href="#">NEWS</a>
+                <a href="#">SHOWS</a>
+                <a href="#">STORE</a>
+                <a href="#">MERCH</a>
+                <a href="#">BIO</a>
+            </div>
+    
+            <div class="cult-legal">
+                <p>&copy; 2025 - el culto del Oculto</p>
+                <p style="font-size: 0.7rem; color: #555;">COOKIE INFO | PRIVACY</p>
+            </div>
+        </div>
+    
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>
